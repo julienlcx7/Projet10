@@ -10,11 +10,10 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
-
   const nextCard = () => {
     setTimeout(
       () => setIndex(index +1 < byDateDesc?.length ? index + 1 : 0),
-      5000
+      3000
     );
   };
   useEffect(() => {

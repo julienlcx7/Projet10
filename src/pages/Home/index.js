@@ -13,20 +13,8 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-const { data } = useData();
-  
-if (!data || !data.events) {
-  // Gérer le cas où data ou data.events n'est pas disponible
-  console.error('Data or events are not loaded yet');
-  return null; // Ou afficher un message d'erreur ou un loader
- }
-
-  data.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-  console.log(data.events[0])
-  const last = data.events[0]
-  console.log(last)
-
-
+  const { data } = useData(); // pour obtenir les données
+  const last = data?.events?.[data.events.length - 1]; // verifie si data + events existent
   return <>
     <header>
       <Menu />
@@ -130,12 +118,12 @@ if (!data || !data.events) {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label={last.type}
+          imageSrc={last?.cover || 'default_cover_image.png'}
+          title={last?.title || 'No Event Available'}
+          date={new Date(last?.date || Date.now())}
+          label={last?.type || 'Default Type'}
         />
+
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>

@@ -30,7 +30,7 @@ const EventList = () => {
     setType(evtType); // Définir le type sélectionné
   };
 
-  const pageNumber = Math.ceil((filteredEvents?.length || 0) / PER_PAGE); // Utiliser Math.ceil pour obtenir le nombre total de pages
+  const pageNumber = Math.ceil((filteredEvents?.length || 0) / PER_PAGE); 
 
   const typeList = new Set(data?.events.map((event) => event.type));
   
